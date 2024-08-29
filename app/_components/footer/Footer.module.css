@@ -1,0 +1,30 @@
+.footer {
+  background-color: theme("colors.primary.400");
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.socialLinks {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.socialLinks a {
+  color: white;
+  text-decoration: none;
+}
+
+.socialLinks a:hover {
+  text-decoration: underline;
+}
