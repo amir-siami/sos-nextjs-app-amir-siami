@@ -1,46 +1,48 @@
 import * as React from "react";
-import Card from "@mui/material/Card";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import Link from "next/link";
 import AccessTimeIcon from "@mui/icons-material/AccessTime"; // Import the clock icon
 
-interface BlogPageProps {
+interface BlogCardProps {
   image: string;
   title: string;
   description: string;
-  duration: string; // You can use a number here if you'd prefer to handle durations as a number of minutes, for example
+  duration: string;
+  slug: string;
 }
 
-const BlogPage: React.FC<BlogPageProps> = ({
+const BlogCard: React.FC<BlogCardProps> = ({
   image,
   title,
   description,
   duration,
+  slug,
 }) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia component="img" height="140" image={image} alt={title} />
-      <CardContent>
-        <Typography variant="h6" component="div">
-          {title}
-        </Typography>
-        <Typography
-          variant="caption"
-          color="text.secondary"
-          display="flex"
-          alignItems="center"
-          mt={1}
-        >
-          <AccessTimeIcon sx={{ fontSize: 16, ml: 0.5 }} />
-          {duration}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          {description}
-        </Typography>
-      </CardContent>
-    </Card>
+    <Link href={`/blog/${slug}`} passHref>
+      <Card sx={{ maxWidth: 345, cursor: "pointer" }}>
+        <CardMedia component="img" height="140" image={image} alt={title} />
+        <CardContent>
+          <Typography variant="h6" component="div">
+            {title}
+          </Typography>
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            display="flex"
+            alignItems="center"
+            mt={1}
+          >
+            <AccessTimeIcon sx={{ fontSize: 16, ml: 0.5 }} />
+            {duration}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {description}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Link>
   );
 };
 
-export default BlogPage;
+export default BlogCard;
