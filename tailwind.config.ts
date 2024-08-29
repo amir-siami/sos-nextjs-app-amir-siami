@@ -36,6 +36,9 @@ const config: Config = {
           950: "#382814",
         },
       },
+      borderWidth: {
+        "1": "1px", // Custom border width utility
+      },
     },
   },
   plugins: [],

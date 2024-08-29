@@ -19,29 +19,50 @@ const BlogCard: React.FC<BlogCardProps> = ({
   slug,
 }) => {
   return (
-    <Link href={`/blog/${slug}`} passHref>
-      <Card sx={{ maxWidth: 345, cursor: "pointer" }}>
-        <CardMedia component="img" height="140" image={image} alt={title} />
-        <CardContent>
-          <Typography variant="h6" component="div">
-            {title}
-          </Typography>
-          <Typography
-            variant="caption"
-            color="text.secondary"
-            display="flex"
-            alignItems="center"
-            mt={1}
-          >
-            <AccessTimeIcon sx={{ fontSize: 16, ml: 0.5 }} />
-            {duration}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {description}
-          </Typography>
-        </CardContent>
-      </Card>
-    </Link>
+    <Card
+      sx={{
+        maxWidth: 345,
+        cursor: "pointer",
+        padding: "1rem",
+        boxShadow: "none",
+      }}
+      className="border-2 rounded-lg border-blue-500"
+    >
+      <CardMedia
+        sx={{ borderRadius: "8px", marginBottom: ".5rem" }}
+        component="img"
+        height="140"
+        image={image}
+        alt={title}
+      />
+      <CardContent sx={{ padding: "0" }}>
+        <Typography variant="h6" component="div">
+          {title}
+        </Typography>
+        <Typography
+          variant="caption"
+          color="text.secondary"
+          display="flex"
+          alignItems="center"
+          mt={1}
+        >
+          <AccessTimeIcon sx={{ fontSize: 16, ml: 0.5 }} />
+          {duration}
+        </Typography>
+        <Typography variant="body2" color="text.secondary">
+          {description}
+        </Typography>
+      </CardContent>
+      <Typography className="text-left mt-3">
+        <Link
+          href={`/blog/${slug}`}
+          passHref
+          className="inline-block px-8 py-1 bg-transparent border border-blue-500 text-black rounded hover:bg-blue-600 hover:text-white"
+        >
+          ادامه
+        </Link>
+      </Typography>
+    </Card>
   );
 };
 
