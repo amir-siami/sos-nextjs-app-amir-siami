@@ -38,7 +38,7 @@ const Footer: React.FC<FooterProps> = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              لینکداین
+              لینکدین
             </a>
           </li>
         </ul>

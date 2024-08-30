@@ -33,7 +33,7 @@ const postSchema = new Schema<IPost>(
     image: {
       type: String,
       required: false,
-      default: "/arctic-fox.webp", // Default image URL
+      default: "elephants.webp", // Default image URL
     },
     description: {
       type: String,

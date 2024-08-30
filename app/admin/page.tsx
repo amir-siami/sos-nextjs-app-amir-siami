@@ -1,7 +1,10 @@
-import React from "react";
+"use client";
 
-const Admin: React.FC = () => {
-  return <h1>admin page</h1>;
+import React, { useState } from "react";
+import BlogPostForm from "../_components/blog/BlogPostForm";
+
+const PostBlog: React.FC = () => {
+  return <BlogPostForm />;
 };
 
-export default Admin;
+export default PostBlog;

@@ -16,6 +16,7 @@ const links: LinkItem[] = [
   { title: "شعبه‌های ما", path: "/branch" },
   { title: "سوالات متداول", path: "/faq" },
   { title: "درباره ما", path: "/about" },
+  { title: "ادمین", path: "/admin" },
 ];
 
 // Functional component with React.FC type and optional NavbarProps

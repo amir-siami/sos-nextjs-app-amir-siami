@@ -2,7 +2,6 @@ import * as React from "react";
 import BlogList from "@/app/_components/blog/BlogList";
 import { IPost } from "../types/blog";
 import { getPosts } from "@/_actions/postAction";
-// import { blogs } from "@/app/data/blog";
 
 export const metadata = {
   title: "بلاگ",

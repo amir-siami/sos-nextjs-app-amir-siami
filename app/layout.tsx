@@ -36,7 +36,7 @@ export default function RootLayout({
             {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
             <CssBaseline />
             <Header />
-            <div className="flex-1 px-8 py-12">
+            <div className="flex-1 px-8 py-12 overflow-y-auto">
               <main className="max-w-7xl mx-auto">{children}</main>
             </div>
             <Footer />

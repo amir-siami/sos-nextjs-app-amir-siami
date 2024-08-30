@@ -37,7 +37,7 @@ const config: Config = {
         },
       },
       borderWidth: {
-        "1": "1px", // Custom border width utility
+        default: "1px",
       },
     },
   },

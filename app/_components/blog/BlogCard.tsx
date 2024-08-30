@@ -1,9 +1,9 @@
 import * as React from "react";
 import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 import Link from "next/link";
-import AccessTimeIcon from "@mui/icons-material/AccessTime"; // Import the clock icon
 
 interface BlogCardProps {
+  id: string;
   image: string;
   title: string;
   description: string;
@@ -12,6 +12,7 @@ interface BlogCardProps {
 }
 
 const BlogCard: React.FC<BlogCardProps> = ({
+  id,
   image,
   title,
   description,
@@ -22,16 +23,20 @@ const BlogCard: React.FC<BlogCardProps> = ({
     <Card
       sx={{
         maxWidth: 345,
-        cursor: "pointer",
         padding: "1rem",
         boxShadow: "none",
       }}
-      className="border-2 rounded-lg border-blue-500"
+      className="rounded-lg border border-blue-500"
     >
       <CardMedia
-        sx={{ borderRadius: "8px", marginBottom: ".5rem" }}
+        sx={{
+          borderRadius: "8px",
+          marginBottom: ".5rem",
+          minHeight: "200px",
+          maxHeight: "200px",
+          objectFit: "cover",
+        }}
         component="img"
-        height="140"
         image={image}
         alt={title}
       />
@@ -40,26 +45,40 @@ const BlogCard: React.FC<BlogCardProps> = ({
           {title}
         </Typography>
         <Typography
-          variant="caption"
-          color="text.secondary"
-          display="flex"
-          alignItems="center"
-          mt={1}
+          sx={{ display: "flex", alignItems: "center", fontSize: 16 }}
         >
-          <AccessTimeIcon sx={{ fontSize: 16, ml: 0.5 }} />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-5"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
           {duration}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {description}
         </Typography>
       </CardContent>
-      <Typography className="text-left mt-3">
+      <Typography className="text-left mt-3 flex gap-1 justify-end">
         <Link
           href={`/blog/${slug}`}
           passHref
-          className="inline-block px-8 py-1 bg-transparent border border-blue-500 text-black rounded hover:bg-blue-600 hover:text-white"
+          className="inline-block px-8 py-1 border border-blue-300 bg-transparent text-black rounded hover:bg-blue-600 hover:text-white"
         >
           ادامه
+        </Link>
+        <Link href={`blog/editBlog/${id}`}>
+          <button className="inline-block px-8 py-1 border border-amber-300 bg-amber-500 text-white rounded hover:bg-amber-200 hover:text-black">
+            Edit
+          </button>
         </Link>
       </Typography>
     </Card>
