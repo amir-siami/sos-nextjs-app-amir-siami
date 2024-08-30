@@ -3,7 +3,7 @@ import { Schema, model, models, Document } from "mongoose";
 // Define the TypeScript interface for the Post document
 export interface IPost extends Document {
   title: string;
-  slug: string;
+  slug?: string;
   image?: string; // Optional field
   description: string;
   author: string;
@@ -24,11 +24,7 @@ const postSchema = new Schema<IPost>(
     },
     slug: {
       type: String,
-      required: true,
       unique: true,
-      lowercase: true,
-      trim: true,
-      maxlength: 100,
     },
     image: {
       type: String,
@@ -61,6 +57,13 @@ const postSchema = new Schema<IPost>(
     timestamps: true, // Automatically handles createdAt and updatedAt fields
   }
 );
+
+postSchema.pre("save", function (this: any, next) {
+  if (!this.slug) {
+    this.slug = this._id.toString();
+  }
+  next();
+});
 
 const PostModel = models.post || model<IPost>("post", postSchema);
 

@@ -19,6 +19,27 @@ const BlogCard: React.FC<BlogCardProps> = ({
   duration,
   slug,
 }) => {
+  const handleDelete = async () => {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+    try {
+      const response = await fetch(`${baseUrl}/api/posts/${id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to delete blog");
+      }
+
+      const result = await response.json();
+      console.log("Blog deleted successfully:", result);
+    } catch (error) {
+      console.error("Error deleting blog:", error);
+    }
+  };
+
   return (
     <Card
       sx={{
@@ -76,10 +97,17 @@ const BlogCard: React.FC<BlogCardProps> = ({
           ادامه
         </Link>
         <Link href={`blog/editBlog/${id}`}>
-          <button className="inline-block px-8 py-1 border border-amber-300 bg-amber-500 text-white rounded hover:bg-amber-200 hover:text-black">
-            Edit
+          <button className="inline-block px-4 py-1 border border-amber-300 bg-amber-500 text-white rounded hover:bg-amber-200 hover:text-black">
+            ویرایش
           </button>
         </Link>
+        <button
+          type="button"
+          onClick={handleDelete}
+          className="inline-block px-4 py-1 border border-amber-300 bg-amber-500 text-white rounded hover:bg-amber-200 hover:text-black"
+        >
+          حذف
+        </button>
       </Typography>
     </Card>
   );

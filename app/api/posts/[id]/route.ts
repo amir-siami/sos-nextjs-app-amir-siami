@@ -59,3 +59,27 @@ export async function PUT(request: Request, { params }: { params: Params }) {
     );
   }
 }
+
+export async function DELETE(request: Request, { params }: { params: Params }) {
+  const { id } = params;
+
+  await connectToDb();
+
+  try {
+    const deletedBlog = await PostModel.findByIdAndDelete(id);
+
+    if (!deletedBlog) {
+      return NextResponse.json({ error: "Blog not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(
+      { message: "Blog deleted successfully" },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json(
+      { error: "Failed to delete blog" },
+      { status: 500 }
+    );
+  }
+}

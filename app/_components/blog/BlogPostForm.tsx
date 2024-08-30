@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { Formik, Form, Field } from "formik";
@@ -22,12 +22,12 @@ const validationSchema = Yup.object().shape({
   title: Yup.string().required("این فیلد نمی‌تواند خالی باشد."),
   description: Yup.string().required("این فیلد نمی‌تواند خالی باشد."),
   author: Yup.string().required("این فیلد نمی‌تواند خالی باشد."),
-  slug: Yup.string().required("این فیلد نمی‌تواند خالی باشد."),
   image: Yup.string().url("Invalid URL format."),
 });
 
 const BlogPostForm: React.FC = () => {
   const router = useRouter();
+  const [slug, setSlug] = useState("");
 
   const handleSubmit = async (values: typeof initialValues) => {
     try {
@@ -38,6 +38,7 @@ const BlogPostForm: React.FC = () => {
         },
         body: JSON.stringify({
           ...values,
+          slug: slug || values.title.toLowerCase().replace(/ /g, "-"), // Auto-generate slug if not provided
           image: values.image || defaultImage,
         }),
       });
@@ -53,6 +54,11 @@ const BlogPostForm: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    // Set the slug whenever the title changes
+    setSlug(initialValues.title.toLowerCase().replace(/ /g, "-"));
+  }, [initialValues.title]);
+
   return (
     <div className="flex justify-center p-6">
       <div className="w-full max-w-md bg-white rounded shadow-lg">
@@ -64,7 +70,7 @@ const BlogPostForm: React.FC = () => {
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
         >
-          {({ dirty, isValid, errors, touched }) => (
+          {({ dirty, isValid, errors, touched, values, setFieldValue }) => (
             <Form>
               <div className="p-4 space-y-4">
                 {/* Title Field */}
@@ -82,13 +88,17 @@ const BlogPostForm: React.FC = () => {
                         : "border-gray-300"
                     }`}
                     style={{ textAlign: "right" }}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      setFieldValue("title", e.target.value);
+                      setSlug(e.target.value.toLowerCase().replace(/ /g, "-"));
+                    }}
                   />
                   {touched.title && errors.title && (
                     <p className="mt-1 text-sm text-red-500">{errors.title}</p>
                   )}
                 </div>
 
-                {/* Slug Field */}
+                {/* Slug Field (hidden or readonly) */}
                 <div className="w-full">
                   <label htmlFor="slug" className="block mb-2 font-medium">
                     Slug
@@ -97,16 +107,11 @@ const BlogPostForm: React.FC = () => {
                     type="text"
                     id="slug"
                     name="slug"
-                    className={`block w-full px-3 py-2 border rounded ${
-                      touched.slug && errors.slug
-                        ? "border-red-500"
-                        : "border-gray-300"
-                    }`}
+                    value={slug}
+                    readOnly // Prevent direct editing
+                    className={`block w-full px-3 py-2 border rounded border-gray-300 bg-gray-100 text-gray-500`}
                     style={{ textAlign: "right" }}
                   />
-                  {touched.slug && errors.slug && (
-                    <p className="mt-1 text-sm text-red-500">{errors.slug}</p>
-                  )}
                 </div>
 
                 {/* Author Field */}
