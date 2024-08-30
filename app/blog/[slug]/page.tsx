@@ -1,6 +1,4 @@
 import React from "react";
-// import Image from "next/image";
-// import { Box, Container, Typography } from "@mui/material";
 import { getPosts } from "@/_actions/postAction";
 import { IPost } from "@/app/types/blog";
 import PostDetail from "@/app/_components/blog/BlogDetail";

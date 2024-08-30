@@ -15,7 +15,10 @@ const UserList: React.FC = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get("/api/users"); // Fetching from the API
+        const baseUrl =
+          process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+
+        const response = await axios.get(`${baseUrl}/api/posts`); // Fetching from the API
         setUsers(response.data); // Set the state with the fetched users
       } catch (err) {
         setError("Failed to fetch users"); // Set error state if the fetch fails
