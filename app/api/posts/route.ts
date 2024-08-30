@@ -31,14 +31,3 @@ export async function POST(request: Request) {
     );
   }
 }
-
-export async function deletePost(slug: string): Promise<IGetPostsResponse> {
-  try {
-    await connectToDb();
-    await PostModel.findOneAndDelete({ slug });
-
-    return {}; // Success
-  } catch (error) {
-    return { errMsg: (error as Error).message };
-  }
-}
