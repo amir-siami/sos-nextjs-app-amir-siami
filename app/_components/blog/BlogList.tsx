@@ -5,10 +5,9 @@ import BlogCard from "@/app/_components/blog/BlogCard";
 import { IPost } from "@/app/types/blog";
 
 interface BlogListProps {
-  blogs?: IPost[]; // Optional array of IPost
+  blogs?: IPost[];
 }
 
-// BlogList component definition
 const BlogList: React.FC<BlogListProps> = ({ blogs }) => {
   if (!blogs || blogs.length === 0) {
     return (

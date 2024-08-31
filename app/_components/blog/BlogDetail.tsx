@@ -4,16 +4,15 @@ import React from "react";
 import Image from "next/image";
 import { Box, Typography } from "@mui/material";
 import { IPost } from "@/app/types/blog";
-import Link from "next/link";
 
 interface PostDetailProps {
   blog: IPost;
 }
 
 interface LoaderProps {
-  src: string; // The source URL of the image
-  width: number; // The desired width of the image
-  quality?: number; // Optional quality of the image (usually between 0-100)
+  src: string; 
+  width: number; 
+  quality?: number;
 }
 
 const PostDetail: React.FC<PostDetailProps> = ({ blog }) => {

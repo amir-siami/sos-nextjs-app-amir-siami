@@ -47,7 +47,7 @@ const BlogPostForm: React.FC = () => {
       });
 
       if (response.ok) {
-        router.push("/blog"); // Navigate to /blog on success
+        router.push("/blog");
         console.log("Post created:", await response.json());
       } else {
         throw new Error("Failed to create post");
