@@ -20,7 +20,9 @@ const initialValues = {
 // Validation schema using Yup
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("این فیلد نمی‌تواند خالی باشد."),
-  description: Yup.string().required("این فیلد نمی‌تواند خالی باشد."),
+  description: Yup.string()
+    .required("این فیلد نمی‌تواند خالی باشد.")
+    .max(255, "توضیحات نمی‌تواند بیش از ۲۵۵ کاراکتر باشد."),
   author: Yup.string().required("این فیلد نمی‌تواند خالی باشد."),
   image: Yup.string().url("Invalid URL format."),
 });
@@ -61,7 +63,7 @@ const BlogPostForm: React.FC = () => {
   useEffect(() => {
     // Set the slug whenever the title changes
     setSlug(initialValues.title.toLowerCase().replace(/ /g, "-"));
-  }, [initialValues.title]);
+  }, []);
 
   return (
     <div className="flex justify-center p-6">
