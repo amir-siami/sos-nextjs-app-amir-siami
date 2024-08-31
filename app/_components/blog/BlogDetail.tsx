@@ -10,8 +10,8 @@ interface PostDetailProps {
 }
 
 interface LoaderProps {
-  src: string; 
-  width: number; 
+  src: string;
+  width: number;
   quality?: number;
 }
 
@@ -42,8 +42,22 @@ const PostDetail: React.FC<PostDetailProps> = ({ blog }) => {
       <Typography variant="h2" component="h1" gutterBottom sx={{ mt: 2 }}>
         {blog.title}
       </Typography>
-      <Typography variant="subtitle1" gutterBottom>
-        {blog.duration}
+      <Typography sx={{ display: "flex", alignItems: "center", fontSize: 16 }}>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="size-5"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
+        </svg>
+        {blog.duration} {blog.duration && "دقیقه"}
       </Typography>
       <Typography variant="body1" paragraph>
         {blog.description}
