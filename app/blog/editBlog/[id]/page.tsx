@@ -12,9 +12,11 @@ const getBlogById = async (
   id: string
 ): Promise<{ blog: IPost } | undefined> => {
   try {
-    const baseUrl =
-      process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000/";
+    const baseUrl = (
+      process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
+    ).replace(/\/?$/, "/");
     const res = await fetch(`${baseUrl}api/posts/${id}`);
+
     if (!res.ok) {
       throw new Error("Failed to fetch blog");
     }

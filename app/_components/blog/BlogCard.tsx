@@ -10,7 +10,9 @@ interface BlogCardProps {
   duration: string;
   slug: string;
 }
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000/";
+const baseUrl = (
+  process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
+).replace(/\/?$/, "/");
 
 const BlogCard: React.FC<BlogCardProps> = ({
   id,
@@ -90,7 +92,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
       </CardContent>
       <Typography className="text-left mt-3 flex gap-1 justify-end">
         <Link
-          href={`${baseUrl}blog/${slug}`}
+          href={`${baseUrl}blog/${id}`}
           passHref
           className="inline-block px-8 py-1 border border-blue-300 bg-transparent text-black rounded hover:bg-blue-600 hover:text-white"
         >

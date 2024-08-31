@@ -31,8 +31,9 @@ const BlogPostForm: React.FC = () => {
 
   const handleSubmit = async (values: typeof initialValues) => {
     try {
-      const baseUrl =
-        process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000/";
+      const baseUrl = (
+        process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
+      ).replace(/\/?$/, "/");
 
       const response = await fetch(`${baseUrl}api/posts`, {
         method: "POST",
