@@ -11,6 +11,8 @@ const BlogPage: React.FC = async () => {
   const { data, errMsg }: { data?: IPost[]; errMsg?: string } =
     await getPosts();
 
+  console.log("data", data);
+
   if (errMsg) {
     console.error("Error fetching posts:", errMsg);
     return <h1>{errMsg}</h1>;

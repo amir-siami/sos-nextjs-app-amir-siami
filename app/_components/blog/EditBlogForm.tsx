@@ -45,7 +45,7 @@ const EditBlogForm: React.FC<BlogPostFormProps> = ({
   const handleSubmit = async (values: typeof initialValues) => {
     try {
       const baseUrl =
-        process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+        process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000/";
 
       const response = await fetch(`${baseUrl}api/posts/${id}`, {
         method: "PUT", // Use PUT or PATCH depending on your API

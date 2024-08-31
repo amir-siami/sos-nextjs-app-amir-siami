@@ -16,7 +16,7 @@ const UserList: React.FC = () => {
     const fetchUsers = async () => {
       try {
         const baseUrl =
-          process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+          process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000/";
 
         const response = await axios.get(`${baseUrl}api/posts`); // Fetching from the API
         setUsers(response.data); // Set the state with the fetched users
