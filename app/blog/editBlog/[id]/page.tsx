@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import EditBlogForm from "@/app/_components/blog/EditBlogForm";
 import { IPost } from "@/app/types/blog";
 
@@ -22,7 +23,7 @@ const getBlogById = async (
     }
 
     const data = await res.json();
-    console.log("Fetched blog data:", data); // Add this line for debugging
+    console.log("Fetched blog data:", data); // Debugging statement
 
     return { blog: data };
   } catch (error) {
@@ -31,15 +32,39 @@ const getBlogById = async (
   }
 };
 
-const EditBlog: React.FC<PageProps> = async ({ params }) => {
+const EditBlog: React.FC<PageProps> = ({ params }) => {
   const { id } = params;
+  const [blog, setBlog] = useState<IPost | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const blogData = await getBlogById(id);
-  if (!blogData || !blogData.blog) {
-    return <h1>Failed to load blog data</h1>;
+  useEffect(() => {
+    const fetchBlog = async () => {
+      const fetchedBlog = await getBlogById(id);
+      if (!fetchedBlog) {
+        setError("Failed to load blog data");
+      } else {
+        setBlog(fetchedBlog.blog);
+      }
+      setLoading(false);
+    };
+
+    fetchBlog();
+  }, [id]);
+
+  if (loading) {
+    return <h1>Loading...</h1>;
   }
 
-  const { _id, title, description, image, author, slug } = blogData.blog;
+  if (error) {
+    return <h1>{error}</h1>;
+  }
+
+  if (!blog) {
+    return <h1>Blog not found</h1>;
+  }
+
+  const { _id, title, description, image, author, slug } = blog;
 
   return (
     <div className="flex justify-center p-6">

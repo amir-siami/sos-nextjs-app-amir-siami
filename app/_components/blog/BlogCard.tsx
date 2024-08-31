@@ -9,7 +9,9 @@ interface BlogCardProps {
   description: string;
   duration: string;
   slug: string;
+  onDelete: (id: string) => Promise<void>; // Add onDelete prop
 }
+
 const baseUrl = (
   process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"
 ).replace(/\/?$/, "/");
@@ -21,24 +23,21 @@ const BlogCard: React.FC<BlogCardProps> = ({
   description,
   duration,
   slug,
+  onDelete, // Destructure onDelete prop
 }) => {
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
+
   const handleDelete = async () => {
+    setLoading(true);
+    setError(null); // Reset error state before attempting to delete
     try {
-      const response = await fetch(`${baseUrl}api/posts/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to delete blog");
-      }
-
-      const result = await response.json();
-      console.log("Blog deleted successfully:", result);
+      await onDelete(id); // Call the onDelete function passed as a prop
+      console.log("Blog deleted successfully");
     } catch (error) {
-      console.error("Error deleting blog:", error);
+      setError("Error deleting blog: " + (error as Error).message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -89,6 +88,8 @@ const BlogCard: React.FC<BlogCardProps> = ({
         <Typography variant="body2" color="text.secondary">
           {description}
         </Typography>
+        {error && <Typography color="error">{error}</Typography>}{" "}
+        {/* Display error message */}
       </CardContent>
       <Typography className="text-left mt-3 flex gap-1 justify-end">
         <Link
@@ -107,8 +108,9 @@ const BlogCard: React.FC<BlogCardProps> = ({
           type="button"
           onClick={handleDelete}
           className="inline-block px-4 py-1 border border-amber-300 bg-amber-500 text-white rounded hover:bg-amber-200 hover:text-black"
+          disabled={loading} // Disable button while loading
         >
-          حذف
+          {loading ? "Deleting..." : "حذف"} {/* Show loading text */}
         </button>
       </Typography>
     </Card>

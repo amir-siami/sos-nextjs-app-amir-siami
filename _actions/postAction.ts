@@ -19,10 +19,11 @@ export async function getPosts(): Promise<IGetPostsResponse> {
   try {
     await connectDB();
     const data: IPost[] = JSON.parse(JSON.stringify(await PostModel.find()));
-    console.log("data", data);
+    console.log("data from getPosts:", data); // Debugging statement
 
     return { data }; // Return the posts in the response
   } catch (error) {
+    console.error("Error in getPosts:", error); // Additional logging for debugging
     return { errMsg: (error as Error).message }; // Type assertion for error
   }
 }

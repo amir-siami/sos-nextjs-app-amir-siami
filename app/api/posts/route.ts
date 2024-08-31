@@ -8,6 +8,21 @@ interface IGetPostsResponse {
   errMsg?: string;
 }
 
+// Function to handle GET requests
+export async function GET() {
+  try {
+    await connectToDb();
+    const data: IPost[] = JSON.parse(JSON.stringify(await PostModel.find()));
+    return NextResponse.json({ data }, { status: 200 });
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return NextResponse.json(
+      { errMsg: "Failed to fetch posts" },
+      { status: 500 }
+    );
+  }
+}
+
 // Handle POST request
 export async function POST(request: Request) {
   try {

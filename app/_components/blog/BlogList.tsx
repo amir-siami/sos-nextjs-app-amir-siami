@@ -1,14 +1,13 @@
-"use client";
-
 import * as React from "react";
 import BlogCard from "@/app/_components/blog/BlogCard";
 import { IPost } from "@/app/types/blog";
 
 interface BlogListProps {
   blogs?: IPost[];
+  onDelete: (id: string) => Promise<void>; // Add onDelete prop
 }
 
-const BlogList: React.FC<BlogListProps> = ({ blogs }) => {
+const BlogList: React.FC<BlogListProps> = ({ blogs, onDelete }) => {
   // Check if blogs is undefined or an empty array
   if (!blogs || blogs.length === 0) {
     return (
@@ -20,6 +19,7 @@ const BlogList: React.FC<BlogListProps> = ({ blogs }) => {
       </div>
     );
   }
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       {blogs.map((blog) => (
@@ -31,6 +31,7 @@ const BlogList: React.FC<BlogListProps> = ({ blogs }) => {
           description={blog.description}
           duration={blog.duration}
           slug={blog.slug}
+          onDelete={onDelete} // Pass onDelete to BlogCard
         />
       ))}
     </div>
