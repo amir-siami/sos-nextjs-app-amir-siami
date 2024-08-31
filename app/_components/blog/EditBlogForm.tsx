@@ -47,7 +47,7 @@ const EditBlogForm: React.FC<BlogPostFormProps> = ({
       const baseUrl =
         process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
-      const response = await fetch(`${baseUrl}/api/posts/${id}`, {
+      const response = await fetch(`${baseUrl}api/posts/${id}`, {
         method: "PUT", // Use PUT or PATCH depending on your API
         headers: {
           "Content-Type": "application/json",

@@ -22,7 +22,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
 }) => {
   const handleDelete = async () => {
     try {
-      const response = await fetch(`${baseUrl}/api/posts/${id}`, {
+      const response = await fetch(`${baseUrl}api/posts/${id}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

@@ -9,6 +9,7 @@ interface BlogListProps {
 }
 
 const BlogList: React.FC<BlogListProps> = ({ blogs }) => {
+  // Check if blogs is undefined or an empty array
   if (!blogs || blogs.length === 0) {
     return (
       <div

@@ -11,7 +11,22 @@ const BlogPage: React.FC = async () => {
   const { data, errMsg }: { data?: IPost[]; errMsg?: string } =
     await getPosts();
 
-  if (errMsg) return <h1>{errMsg}</h1>;
+  if (errMsg) {
+    console.error("Error fetching posts:", errMsg);
+    return <h1>{errMsg}</h1>;
+  }
+
+  if (!data || data.length === 0) {
+    return (
+      <div
+        className="bg-orange-100 border border-orange-400 text-orange-400 px-4 py-3 rounded relative"
+        role="alert"
+      >
+        <h2 className="font-semibold">اطلاعاتی برای مشاهده وجود ندارد</h2>
+      </div>
+    );
+  }
+
   return (
     <div className="flex gap-4 justify-between">
       <BlogList blogs={data} />
