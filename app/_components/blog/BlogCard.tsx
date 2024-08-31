@@ -48,7 +48,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
         padding: "1rem",
         boxShadow: "none",
       }}
-      className="rounded-lg border border-blue-500"
+      className="rounded-lg border border-blue-500 flex flex-col justify-between"
     >
       <CardMedia
         sx={{
@@ -83,7 +83,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
               d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
             />
           </svg>
-          {duration}
+          {duration} {duration && "دقیقه"}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           {description}
@@ -91,23 +91,23 @@ const BlogCard: React.FC<BlogCardProps> = ({
         {error && <Typography color="error">{error}</Typography>}{" "}
         {/* Display error message */}
       </CardContent>
-      <Typography className="text-left mt-3 flex gap-1 justify-end">
+      <Typography className="text-left mt-3 flex gap-1 justify-end align-bottom flex-wrap">
         <Link
           href={`${baseUrl}blog/${id}`}
           passHref
-          className="inline-block px-8 py-1 border border-blue-300 bg-transparent text-black rounded hover:bg-blue-600 hover:text-white"
+          className="inline-block lg:px-8 px-4 py-1 border border-blue-300 bg-transparent text-black rounded hover:bg-blue-600 hover:text-white lg:text-base text-xs"
         >
           ادامه
         </Link>
         <Link href={`${baseUrl}blog/editBlog/${id}`}>
-          <button className="inline-block px-4 py-1 border border-amber-300 bg-amber-500 text-white rounded hover:bg-amber-200 hover:text-black">
+          <button className="inline-block px-4 py-1 border border-amber-300 bg-amber-500 text-white rounded hover:bg-amber-200 hover:text-black lg:text-base text-xs">
             ویرایش
           </button>
         </Link>
         <button
           type="button"
           onClick={handleDelete}
-          className="inline-block px-4 py-1 border border-amber-300 bg-amber-500 text-white rounded hover:bg-amber-200 hover:text-black"
+          className="inline-block px-4 py-1 border border-amber-300 bg-amber-500 text-white rounded hover:bg-amber-200 hover:text-black lg:text-base text-xs"
           disabled={loading} // Disable button while loading
         >
           {loading ? "Deleting..." : "حذف"} {/* Show loading text */}

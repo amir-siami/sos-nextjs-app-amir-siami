@@ -12,6 +12,7 @@ interface BlogPostFormProps {
   image: string;
   author: string;
   slug: string;
+  duration: string;
 }
 
 const EditBlogForm: React.FC<BlogPostFormProps> = ({
@@ -21,6 +22,7 @@ const EditBlogForm: React.FC<BlogPostFormProps> = ({
   image,
   author,
   slug,
+  duration,
 }) => {
   const [autoSlug, setAutoSlug] = useState(slug);
   const router = useRouter();
@@ -32,6 +34,7 @@ const EditBlogForm: React.FC<BlogPostFormProps> = ({
     image,
     author,
     slug: autoSlug,
+    duration,
   };
 
   const validationSchema = Yup.object().shape({
@@ -39,6 +42,7 @@ const EditBlogForm: React.FC<BlogPostFormProps> = ({
     description: Yup.string().required("این فیلد نمی‌تواند خالی باشد."),
     author: Yup.string().required("این فیلد نمی‌تواند خالی باشد."),
     slug: Yup.string().required("این فیلد نمی‌تواند خالی باشد."),
+    duration: Yup.string().required("این فیلد نمی‌تواند خالی باشد."),
     image: Yup.string().url("Invalid URL format."),
   });
 
@@ -117,7 +121,7 @@ const EditBlogForm: React.FC<BlogPostFormProps> = ({
                 </div>
 
                 {/* Slug Field (readonly) */}
-                <div className="w-full">
+                <div className="w-full hidden">
                   <label htmlFor="slug" className="block mb-2 font-medium">
                     Slug
                   </label>
@@ -176,6 +180,29 @@ const EditBlogForm: React.FC<BlogPostFormProps> = ({
                   {touched.description && errors.description && (
                     <p className="mt-1 text-sm text-red-500">
                       {errors.description}
+                    </p>
+                  )}
+                </div>
+
+                {/* Duration Field */}
+                <div className="w-full">
+                  <label htmlFor="duration" className="block mb-2 font-medium">
+                    مدت زمان مطالعه
+                  </label>
+                  <Field
+                    type="text"
+                    id="duration"
+                    name="duration"
+                    className={`block w-full px-3 py-2 border rounded ${
+                      touched.duration && errors.duration
+                        ? "border-red-500"
+                        : "border-gray-300"
+                    }`}
+                    style={{ textAlign: "right" }}
+                  />
+                  {touched.duration && errors.duration && (
+                    <p className="mt-1 text-sm text-red-500">
+                      {errors.duration}
                     </p>
                   )}
                 </div>

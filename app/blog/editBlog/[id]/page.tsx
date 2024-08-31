@@ -64,7 +64,7 @@ const EditBlog: React.FC<PageProps> = ({ params }) => {
     return <h1>Blog not found</h1>;
   }
 
-  const { _id, title, description, image, author, slug } = blog;
+  const { _id, title, description, image, author, slug, duration } = blog;
 
   return (
     <div className="flex justify-center p-6">
@@ -75,6 +75,7 @@ const EditBlog: React.FC<PageProps> = ({ params }) => {
         image={image}
         author={author}
         slug={slug}
+        duration={duration}
       />
     </div>
   );

@@ -15,6 +15,7 @@ const initialValues = {
   image: "",
   author: "",
   slug: "",
+  duration: "",
 };
 
 // Validation schema using Yup
@@ -24,6 +25,7 @@ const validationSchema = Yup.object().shape({
     .required("این فیلد نمی‌تواند خالی باشد.")
     .max(255, "توضیحات نمی‌تواند بیش از ۲۵۵ کاراکتر باشد."),
   author: Yup.string().required("این فیلد نمی‌تواند خالی باشد."),
+  duration: Yup.string().required("این فیلد نمی‌تواند خالی باشد."),
   image: Yup.string().url("Invalid URL format."),
 });
 
@@ -105,7 +107,7 @@ const BlogPostForm: React.FC = () => {
                 </div>
 
                 {/* Slug Field (hidden or readonly) */}
-                <div className="w-full">
+                <div className="w-full hidden">
                   <label htmlFor="slug" className="block mb-2 font-medium">
                     Slug
                   </label>
@@ -164,6 +166,29 @@ const BlogPostForm: React.FC = () => {
                   {touched.description && errors.description && (
                     <p className="mt-1 text-sm text-red-500">
                       {errors.description}
+                    </p>
+                  )}
+                </div>
+
+                {/* Author Field */}
+                <div className="w-full">
+                  <label htmlFor="duration" className="block mb-2 font-medium">
+                    مدت زمان مطالعه
+                  </label>
+                  <Field
+                    type="text"
+                    id="duration"
+                    name="duration"
+                    className={`block w-full px-3 py-2 border rounded ${
+                      touched.duration && errors.duration
+                        ? "border-red-500"
+                        : "border-gray-300"
+                    }`}
+                    style={{ textAlign: "right" }}
+                  />
+                  {touched.duration && errors.duration && (
+                    <p className="mt-1 text-sm text-red-500">
+                      {errors.duration}
                     </p>
                   )}
                 </div>

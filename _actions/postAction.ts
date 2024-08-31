@@ -28,13 +28,13 @@ export async function getPosts(): Promise<IGetPostsResponse> {
   }
 }
 
-export async function getPost(_id: string): Promise<IGetPostResponse> {
+export async function getPost(id: string): Promise<IGetPostResponse> {
   try {
     await connectDB();
 
     const data: IPost | null = JSON.parse(
       JSON.stringify(
-        await PostModel.findOne({ _id }) // Find a single post by slug
+        await PostModel.findOne({ id }) // Find a single post by slug
       )
     );
 

@@ -26,6 +26,10 @@ const postSchema = new Schema<IPost>(
       type: String,
       unique: true,
     },
+    duration: {
+      type: String,
+      unique: true,
+    },
     image: {
       type: String,
       required: false,

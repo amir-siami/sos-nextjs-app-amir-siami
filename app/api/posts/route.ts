@@ -27,9 +27,16 @@ export async function GET() {
 export async function POST(request: Request) {
   try {
     await connectToDb();
-    const { title, description, image, author } = await request.json();
+    const { title, description, image, author, duration } =
+      await request.json();
 
-    const newPost = new PostModel({ title, description, image, author });
+    const newPost = new PostModel({
+      title,
+      description,
+      image,
+      author,
+      duration,
+    });
     newPost.slug = newPost._id.toString();
 
     await newPost.save();

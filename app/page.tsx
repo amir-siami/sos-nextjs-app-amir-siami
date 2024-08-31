@@ -3,7 +3,7 @@ import * as React from "react";
 const HomePage: React.FC = () => {
   return (
     <div className="mt-24">
-      <div className="relative z-10 text-center">
+      <div className="relative text-center">
         <h1 className="text-4xl text-primary-30 mb-10 tracking-tight font-normal">
           به وب سایت شبکه کمک رسان ایران خوش آمدید
         </h1>

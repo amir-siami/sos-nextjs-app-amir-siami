@@ -1,1 +1,104 @@
+/* Navigation.module.css */
 
+/* Base navbar styles */
+.navbar {
+  background-color: #fff;
+  padding: 1rem;
+  position: relative; /* Position relative for overlay */
+  z-index: 1000; /* Ensure it is above the overlay */
+}
+
+/* Styles for the list */
+.navbar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+/* Link styles */
+.navbar ul li {
+  margin: 0 1.5rem;
+}
+
+.navbar ul a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Media query for responsive behavior */
+@media (max-width: 768px) {
+  .navbar ul {
+    flex-direction: column;
+    gap: 2rem;
+    padding-top: 3rem;
+    position: fixed; /* Fixed position for sliding effect */
+    top: 0;
+    left: -100%; /* Start off-screen */
+    height: 100%; /* Full height */
+    width: 250px; /* Width of the menu */
+    background-color: white; /* Background color */
+    transition: left 0.3s ease; /* Transition for sliding */
+    z-index: 1200; /* Ensure it is above other content */
+  }
+
+  .navbar ul.active {
+    left: 0; /* Slide in */
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+    z-index: 900; /* Below the menu */
+    display: none; /* Hidden by default */
+  }
+
+  .overlay.active {
+    display: block; /* Show overlay when active */
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+    position: relative;
+    z-index: 1100; /* Ensure it is above the overlay */
+  }
+
+  .hamburger-icon {
+    width: 30px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .hamburger.open .hamburger-icon:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .hamburger.open .hamburger-icon:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.open .hamburger-icon:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+}
+
+/* Desktop hamburger icon hidden by default */
+.hamburger {
+  display: none;
+}
+
+/* Show hamburger icon on mobile */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+}

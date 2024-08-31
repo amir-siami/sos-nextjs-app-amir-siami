@@ -81,7 +81,7 @@ const BlogPage: React.FC = () => {
 
   // Render the blog list
   return (
-    <div className="flex gap-4 justify-between">
+    <div className="flex gap-4 justify-center">
       <BlogList blogs={blogs} onDelete={handleDelete} />
     </div>
   );
