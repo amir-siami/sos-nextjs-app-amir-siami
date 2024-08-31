@@ -90,13 +90,13 @@ const BlogCard: React.FC<BlogCardProps> = ({
       </CardContent>
       <Typography className="text-left mt-3 flex gap-1 justify-end">
         <Link
-          href={`${baseUrl}/blog/${slug}`}
+          href={`${baseUrl}blog/${slug}`}
           passHref
           className="inline-block px-8 py-1 border border-blue-300 bg-transparent text-black rounded hover:bg-blue-600 hover:text-white"
         >
           ادامه
         </Link>
-        <Link href={`${baseUrl}/blog/editBlog/${id}`}>
+        <Link href={`${baseUrl}blog/editBlog/${id}`}>
           <button className="inline-block px-4 py-1 border border-amber-300 bg-amber-500 text-white rounded hover:bg-amber-200 hover:text-black">
             ویرایش
           </button>

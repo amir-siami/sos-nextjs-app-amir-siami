@@ -19,7 +19,7 @@ export async function getPosts(): Promise<IGetPostsResponse> {
   try {
     await connectDB();
     const data: IPost[] = JSON.parse(JSON.stringify(await PostModel.find()));
-    console.log(data);
+    console.log("data", data);
 
     return { data }; // Return the posts in the response
   } catch (error) {
