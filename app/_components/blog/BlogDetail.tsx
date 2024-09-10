@@ -28,20 +28,41 @@ const PostDetail: React.FC<PostDetailProps> = ({ blog }) => {
         padding: 2,
         borderRadius: 1,
         boxShadow: 2,
+        overflow: "hidden",
       }}
     >
-      <Image
-        loader={myLoader}
-        src={blog.image}
-        alt={blog.title}
-        width={800}
-        height={450}
-        layout="responsive"
-        style={{ borderRadius: "8px" }}
-      />
-      <Typography variant="h2" component="h1" gutterBottom sx={{ mt: 2 }}>
+      <div style={{ width: "100%", position: "relative", marginBottom: "8px" }}>
+        <Image
+          loader={myLoader}
+          src={blog.image}
+          alt={blog.title}
+          width={800}
+          height={533}
+          layout="responsive" // This maintains the aspect ratio
+          style={{
+            borderRadius: "8px",
+            objectFit: "cover",
+            width: "100%",
+            maxHeight: "533",
+          }}
+        />
+      </div>
+
+      <Typography
+        variant="h2"
+        component="h1"
+        gutterBottom
+        sx={{
+          fontSize: "2.5rem", // Increase font size
+          fontWeight: "bold", // Make it bold
+          color: "#d1801d", // Change color to a darker shade
+          textTransform: "uppercase", // Make the text uppercase
+          textShadow: "1px 1px 2px rgba(0, 0, 0, 0.1)", // Add subtle text shadow
+        }}
+      >
         {blog.title}
       </Typography>
+
       <Typography sx={{ display: "flex", alignItems: "center", fontSize: 16 }}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -59,9 +80,7 @@ const PostDetail: React.FC<PostDetailProps> = ({ blog }) => {
         </svg>
         {blog.duration} {blog.duration && "دقیقه"}
       </Typography>
-      <Typography variant="body1" paragraph>
-        {blog.description}
-      </Typography>
+      <Typography variant="body1">{blog.description}</Typography>
     </Box>
   );
 };

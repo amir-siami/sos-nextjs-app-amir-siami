@@ -48,7 +48,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
         padding: "1rem",
         boxShadow: "none",
       }}
-      className="rounded-lg border border-blue-500 flex flex-col justify-between"
+      className="rounded-lg border border-blue-500 flex flex-col relative"
     >
       <CardMedia
         sx={{
@@ -85,34 +85,34 @@ const BlogCard: React.FC<BlogCardProps> = ({
           </svg>
           {duration} {duration && "دقیقه"}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body2" color="text.secondary" className="mb-2">
           {description}
         </Typography>
-        {error && <Typography color="error">{error}</Typography>}{" "}
+        {error && <Typography color="error">{error}</Typography>}
         {/* Display error message */}
-      </CardContent>
-      <Typography className="text-left mt-3 flex gap-1 justify-end align-bottom flex-wrap">
-        <Link
-          href={`${baseUrl}blog/${id}`}
-          passHref
-          className="inline-block lg:px-8 px-4 py-1 border border-blue-300 bg-transparent text-black rounded hover:bg-blue-600 hover:text-white lg:text-base text-xs"
-        >
-          ادامه
-        </Link>
-        <Link href={`${baseUrl}blog/editBlog/${id}`}>
-          <button className="inline-block px-4 py-1 border border-amber-300 bg-amber-500 text-white rounded hover:bg-amber-200 hover:text-black lg:text-base text-xs">
-            ویرایش
+        <Typography className="text-left flex gap-1 justify-center align-bottom flex-wrap absolute bottom-0 left-0 right-0 transform -translate-y-2.5">
+          <Link
+            href={`${baseUrl}blog/${id}`}
+            passHref
+            className="inline-block lg:px-8 px-4 py-1 border border-blue-300 bg-transparent text-black rounded hover:bg-blue-600 hover:text-white lg:text-base text-xs"
+          >
+            ادامه
+          </Link>
+          <Link href={`${baseUrl}blog/editBlog/${id}`}>
+            <button className="inline-block px-4 py-1 border border-amber-300 bg-amber-500 text-white rounded hover:bg-amber-200 hover:text-black lg:text-base text-xs">
+              ویرایش
+            </button>
+          </Link>
+          <button
+            type="button"
+            onClick={handleDelete}
+            className="inline-block px-4 py-1 border border-amber-300 bg-amber-500 text-white rounded hover:bg-amber-200 hover:text-black lg:text-base text-xs"
+            disabled={loading} // Disable button while loading
+          >
+            {loading ? "Deleting..." : "حذف"} {/* Show loading text */}
           </button>
-        </Link>
-        <button
-          type="button"
-          onClick={handleDelete}
-          className="inline-block px-4 py-1 border border-amber-300 bg-amber-500 text-white rounded hover:bg-amber-200 hover:text-black lg:text-base text-xs"
-          disabled={loading} // Disable button while loading
-        >
-          {loading ? "Deleting..." : "حذف"} {/* Show loading text */}
-        </button>
-      </Typography>
+        </Typography>
+      </CardContent>
     </Card>
   );
 };

@@ -33,7 +33,8 @@ const postSchema = new Schema<IPost>(
     image: {
       type: String,
       required: false,
-      default: "elephants.webp", // Default image URL
+      default:
+        "https://images.pexels.com/photos/339620/pexels-photo-339620.jpeg?auto=compress&cs=tinysrgb&w=600?w=1920&q=75", // Default image URL
     },
     description: {
       type: String,

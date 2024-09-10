@@ -6,7 +6,8 @@ import { useRouter } from "next/navigation";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
-const defaultImage = "elephants.webp"; // Ensure the default image path is correct
+const defaultImage =
+  "https://images.pexels.com/photos/339620/pexels-photo-339620.jpeg?auto=compress&cs=tinysrgb&w=600?w=1920&q=75"; // Ensure the default image path is correct
 
 // Initial values for the form
 const initialValues = {

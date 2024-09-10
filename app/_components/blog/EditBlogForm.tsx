@@ -60,7 +60,9 @@ const EditBlogForm: React.FC<BlogPostFormProps> = ({
         body: JSON.stringify({
           ...values,
           slug: autoSlug || values.title.toLowerCase().replace(/ /g, "-"),
-          image: values.image || "elephants.webp", // Default image if none provided
+          image:
+            values.image ||
+            "https://images.pexels.com/photos/339620/pexels-photo-339620.jpeg?auto=compress&cs=tinysrgb&w=600?w=1920&q=75", // Default image if none provided
         }),
       });
 
