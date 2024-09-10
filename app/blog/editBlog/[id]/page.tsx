@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import EditBlogForm from "@/app/_components/blog/EditBlogForm";
 import { IPost } from "@/app/types/blog";
+import Spinner from "@/app/_components/spinner/Spinner";
 
 interface PageProps {
   params: {
@@ -53,7 +54,7 @@ const EditBlog: React.FC<PageProps> = ({ params }) => {
   }, [id]);
 
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <Spinner />;
   }
 
   if (error) {

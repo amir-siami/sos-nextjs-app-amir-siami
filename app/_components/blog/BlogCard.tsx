@@ -109,7 +109,7 @@ const BlogCard: React.FC<BlogCardProps> = ({
             className="inline-block px-4 py-1 border border-amber-300 bg-amber-500 text-white rounded hover:bg-amber-200 hover:text-black lg:text-base text-xs"
             disabled={loading} // Disable button while loading
           >
-            {loading ? "Deleting..." : "حذف"} {/* Show loading text */}
+            {loading ? "در حال حذف ..." : "حذف"} {/* Show loading text */}
           </button>
         </Typography>
       </CardContent>

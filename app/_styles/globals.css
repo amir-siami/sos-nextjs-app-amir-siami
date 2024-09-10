@@ -8,7 +8,7 @@
     width: 60px;
     aspect-ratio: 1;
     border-radius: 50%;
-    border: 8px solid theme("colors.primary.900");
+    border: 8px solid theme("colors.primary.600");
     border-right-color: theme("colors.primary.200");
     animation: rotate 1s infinite linear;
   }

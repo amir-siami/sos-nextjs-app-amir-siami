@@ -4,6 +4,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import BlogList from "@/app/_components/blog/BlogList";
 import { IPost } from "@/app/types/blog";
 import { getPosts } from "@/_actions/postAction";
+import Spinner from "../_components/spinner/Spinner";
 
 const BlogPage: React.FC = () => {
   const [blogs, setBlogs] = useState<IPost[]>([]);
@@ -59,7 +60,7 @@ const BlogPage: React.FC = () => {
 
   // Render loading state
   if (loading) {
-    return <h1>Loading...</h1>;
+    return <Spinner />;
   }
 
   // Render error state

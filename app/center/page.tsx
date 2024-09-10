@@ -11,7 +11,7 @@ export const metadata = {
 const Center: React.FC = async () => {
   const { data, errMsg }: { data?: IUser[]; errMsg?: string } =
     await getUsers();
-  // console.log(posts);
+
   if (errMsg) return <h1>{errMsg}</h1>;
 
   return (
