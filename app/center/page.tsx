@@ -1,6 +1,8 @@
 import React from "react";
 import { getUsers } from "@/_actions/userAction";
-import { IUser } from "../types/user";
+import { IUser } from "@/app/types/user";
+
+export const revalidate = 0;
 
 // Define the metadata for the page
 export const metadata = {
